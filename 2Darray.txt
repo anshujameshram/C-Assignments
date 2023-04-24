@@ -1,0 +1,348 @@
+//1. Write a program to accept, display and print the sum of elements of each row and sum of elements of 
+//each column of a matrix
+
+#include<stdio.h>
+
+void main()
+{
+	int a[10][10],i,j,sum,n,m;
+	
+	printf("Enter number of row and columns:");
+	scanf("%d%d",&n,&m);
+	
+	printf("Enter elements for row and column:");
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<m;j++)
+		{
+			scanf("%d",&a[i][j]);
+		}
+	}
+	
+	for(i=0;i<n;i++)
+	{
+		sum=0;
+		for(j=0;j<m;j++)
+		{
+			sum=sum+a[i][j];
+		}
+		printf("sum of elements of row matrix is %d\n",sum);
+	}
+	
+	for(i=0;i<n;i++)
+	{
+		sum=0;
+		for(j=0;j<m;j++)
+		{
+			sum=sum+a[j][i];
+		}
+		printf("sum of elements of column matrix is %d\n",sum);
+	}	
+}
+
+o/p-
+Enter number of row and columns:3 3
+Enter elements for row and column:
+1 2 3
+4 5 6
+7 8 9
+sum of elements of row matrix is 6
+sum of elements of row matrix is 15
+sum of elements of row matrix is 24
+sum of elements of column matrix is 12
+sum of elements of column matrix is 15
+sum of elements of column matrix is 18
+
+//2. Write a program to accept a matrix A of size mXn and store its transpose in matrix B. Display matrix B.
+
+#include<stdio.h>
+
+void main()
+{
+	int a[10][10],i,j,n,m,b[10][10];
+	
+	printf("Enter number of row and columns:");
+	scanf("%d%d",&n,&m);
+	
+	printf("Enter elements for row and column:");
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<m;j++)
+		{
+			scanf("%d",&a[i][j]);
+		}
+	}
+	
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<m;j++)
+		{
+			b[i][j]=a[j][i];
+		}
+	}
+	printf("Transpose matrix is:\n");
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<m;j++)
+		{
+			printf("%d ",b[i][j]);
+		}
+		printf("\n");
+	}
+	
+}
+
+o/p-
+Enter number of row and columns:3 3
+Enter elements for row and column:
+3 1 5
+6 2 8
+8 6 3
+Transpose matrix is:
+3 6 8
+1 2 6
+5 8 3
+
+//3. Write a program to add and multiply two matrices. Perform necessary checks before adding and 
+//multiplying the matrices.
+
+#include<stdio.h>
+int main()
+{
+	int a[3][3], b[3][3], c[3][3]={0}, d[3][3]={0};
+	int i,j,k,m,n,p,q;
+	printf("Enter no. of rows and columns in matrix A: ");
+	scanf("%d%d",&m,&n);
+	printf("Enter no. of rows and columns in matrix B: ");
+	scanf("%d%d",&p,&q);
+	if(m!=p || n!=q)
+	{
+		printf("Matrix Addition is not possible");
+		return;
+	}
+	else if(n!=p)
+	{
+		printf("Matrix Multiplication is not possible");
+		return;
+	}
+	else
+	{
+		printf("Enter elements of matrix A: ");
+		for(i=0;i<m;i++)
+			for(j=0;j<n;j++)
+				scanf("%d", &a[i][j]);
+		printf("Enter elements of matrix B: ");
+		for(i=0;i<p;i++)
+			for(j=0;j<q;j++)
+				scanf("%d", &b[i][j]);
+		//Matrix Addition
+		for(i=0;i<m;i++)
+			for(j=0;j<n;j++)
+				c[i][j] = a[i][j] + b[i][j];
+		printf("\nResult of Matirx Addition:\n");
+		for(i=0;i<m;i++)
+		{
+			for(j=0;j<n;j++)
+				printf("%d ", c[i][j]);
+			printf("\n");
+		}
+        //mult
+		for(i=0;i<m;i++)
+			for(j=0;j<q;j++)
+				for(k=0;k<p;k++)
+					d[i][j] =d[i][j] + a[i][k]*b[k][j];
+		printf("\nResult of Matirx Multiplication:\n");
+		for(i=0;i<m;i++)
+		{
+			for(j=0;j<q;j++)
+				printf("%d ", d[i][j]);
+			printf("\n");
+		}
+	}
+}
+
+o/p-
+Enter no. of rows and columns in matrix B: 3 3
+Enter elements of matrix A: 
+1 2 3
+4 5 6
+7 8 9
+Enter elements of matrix B: 
+3 2 5
+5 2 4
+7 2 5
+
+Result of Matirx Addition:
+4 4 8
+9 7 10
+14 10 14
+
+Result of Matirx Multiplication:
+34 12 28
+79 30 70
+124 48 112
+
+//4. Write a program to perform the following operations on a square matrix. Write 
+//i) Check if the matrix is symmetric.
+//ii) Display the trace of the matrix (sum of diagonal elements). 
+//iii) Check if the matrix is an upper triangular matrix.
+
+#include<stdio.h>
+void sym();
+void trace();
+void uptri();
+int main()
+{
+ int ch;
+ printf("1.Check if the matrix is symmetric\n 2.Display the trace of the matrix (sum of diagonal elements
+)\n 3.Check if the matrix is an upper triangular matrix\n ");
+ printf("enter your choice: ");
+ scanf("%d",&ch);
+ switch(ch)
+ {
+  case 1:
+   sym();
+   break;
+  case 2:
+   trace();
+   break;
+  case 3:
+   uptri();
+   break;            
+ }
+}
+void sym()
+{
+ int m, n, c, d, matrix[10][10], transpose[10][10];
+
+  printf("Enter the number of rows and columns of matrix\n");
+  scanf("%d%d", &m, &n);
+  printf("Enter elements of the matrix\n");
+
+  for (c = 0; c < m; c++)
+    for (d = 0; d < n; d++)
+      scanf("%d", &matrix[c][d]);
+
+  for (c = 0; c < m; c++)
+    for (d = 0; d < n; d++)
+      transpose[d][c] = matrix[c][d];
+
+  if (m == n)
+  {
+    for (c = 0; c < m; c++)
+    {
+      for (d = 0; d < m; d++)
+      {
+        if (matrix[c][d] != transpose[c][d])
+          break;
+      }
+      if (d != m)
+        break;
+    }
+    if (c == m)
+      printf("The matrix is symmetric.\n");
+    else
+      printf("The matrix isn't symmetric.\n");
+  }
+  else
+    printf("The matrix isn't symmetric.\n");
+}
+
+void trace()
+{
+ int a[10][10],i,j,sum=0,m,n;
+ printf("enter the values of m,n");
+ scanf("%d%d",&m,&n);
+ printf("enter the elements of matrix a");
+ for(i=0;i<m;i++)
+  for(j=0;j<n;j++)
+   scanf("%d",&a[i][j]);
+ for(i=0;i<m;i++)
+  for(j=0;j<n;j++)
+   if(i==j)
+    sum=sum+a[i][j];
+ printf("trace of a matrix=%d",sum);
+} 
+
+void uptri()
+{
+    int array[10][10];
+    int row, col, isUpper,MAX_COLS,MAX_ROWS;
+    printf("enter how many row:(row = col):");
+    scanf("%d",&MAX_ROWS);
+    MAX_COLS=MAX_ROWS;
+ printf("Enter elements in matrix of size %dx%d: \n", MAX_ROWS, MAX_COLS);
+    for(row=0; row<MAX_ROWS; row++)
+    {
+        for(col=0; col<MAX_COLS; col++)
+        {
+            scanf("%d", &array[row][col]);
+        }
+    }
+    isUpper = 1;
+    for(row=0; row<MAX_ROWS; row++)
+    {
+        for(col=0; col<MAX_COLS; col++)
+        {
+            if(col<row && array[row][col]!=0)
+            {
+                isUpper = 0;
+            }
+        }
+    }
+    if(isUpper == 1)
+    {
+        printf("\nThe matrix is Upper triangular matrix.\n");
+
+        for(row=0; row<MAX_ROWS; row++)
+        {
+            for(col=0; col<MAX_COLS; col++)
+            {
+                printf("%d ", array[row][col]);
+            }
+
+            printf("\n");
+        }
+    }
+    else
+    {
+        printf("\nThe matrix is not Upper triangular matrix.");
+    }
+}
+
+o/p-
+1.Check if the matrix is symmetric
+ 2.Display the trace of the matrix (sum of diagonal elements)
+ 3.Check if the matrix is an upper triangular matrix
+ enter your choice: 1
+Enter the number of rows and columns of matrix
+3 3
+Enter elements of the matrix
+5 2 6
+7 2 4
+8 4 1
+The matrix isn't symmetric.
+
+1.Check if the matrix is symmetric
+ 2.Display the trace of the matrix (sum of diagonal elements)
+ 3.Check if the matrix is an upper triangular matrix
+ enter your choice: 2
+enter the values of m,n 3 3
+enter the elements of matrix a1 2 3
+4 5 6
+7 8 9
+trace of a matrix=15
+
+1.Check if the matrix is symmetric
+ 2.Display the trace of the matrix (sum of diagonal elements)
+ 3.Check if the matrix is an upper triangular matrix
+ enter your choice:
+3
+enter how many row:(row = col):3
+Enter elements in matrix of size 3x3:
+12 45 78
+35 65 21
+87 56 34
+
+The matrix is not Upper triangular matrix.
+

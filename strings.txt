@@ -1,0 +1,379 @@
+//1. Write a program which accepts a sentence from the user and alters it as follows: Every space is 
+//replaced by *, case of all alphabets is reversed, digits are replaced by?
+
+#include<stdio.h>
+#include<string.h>
+
+void main()
+{
+	char str[100];
+	int i;
+	
+	printf("Enter a sentence:");
+	fgets(str,100,stdin);
+	
+	for(i=0;i<=strlen(str)-1;i++)
+	{
+		if(str[i]==' ')
+			str[i]='*';
+			
+		if(islower(str[i]))
+			str[i]=toupper(str[i]);
+		else
+			str[i]=tolower(str[i]);
+		
+		if(isdigit(str[i]))
+			str[i]='?';
+			
+	}
+	printf("\n %s",str);
+	
+}
+o/p-
+Enter a sentence:A n S H U j a 1
+
+ a*N*s*h*u*J*A*?
+
+//2. Write a program that accepts n strings and displays the longest string. Use array of strings
+#include<stdio.h>
+#include<string.h>
+#define size 100 
+#define wsize 20
+
+void Longest_Word(char str[][20],int n);
+int main()
+{
+	char str[size][wsize];
+	int i,count=0,n;
+	
+	printf("\n How many strings to accept:- ");
+	scanf("%d",&n);
+	
+	printf("\n Enter %d words:- \n \n",n);
+	for(i=0;i<n;i++)
+		scanf("%s",str[i]);
+	Longest_Word(str,n);
+}
+
+void Longest_Word(char str[][20],int n)
+{
+	int i,Max,len1,c;
+	Max=strlen(str[0]);
+	for(i=1;i<n;i++)
+	{
+	len1=strlen(str[i]);
+	if(len1>Max)
+	{
+		c=i;
+		Max=len1;
+	}
+}
+	printf("\n The longest string among all is \"%s\" \n \n",str[c]);
+}
+0/p-
+ How many strings to accept:- 5
+
+ Enter 5 words:-
+
+Its
+my
+Pleasure
+tomeet
+you
+
+ The longest string among all is "Pleasure"
+
+//3. Write a menu driven program to perform the following operations on strings using standard library 
+//functions: Length, Copy, Concatenation, Compare, Reverse, Uppercase, Lowercase, Check case.
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+    char str1[20],str2[20];
+    int ch,i,j;
+    do
+    {
+        printf("\tMENU");
+        printf("\n------------------------------\n");
+        printf("1:Find Length of String");
+        printf("\n2:copy the String");
+        printf("\n3:Concatenate Strings");
+        printf("\n4:Compare String ");
+        printf("\n5:Reverse Strings");
+        printf("\n6:Uppercase Strings");
+        printf("\n7:Lowercase Strings");
+        printf("\n8:Check case Strings");
+        printf("\n9:Exit");
+        printf("\n------------------------------\n");
+        printf("\nEnter your choice: ");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+                printf("Enter String: ");
+                scanf("%s",str1);
+                i=strlen(str1);
+                printf("Length of String : %d\n\n",i);
+            break;
+            case 2:
+                printf("Enter a String1: ");
+                scanf("%s",str1);
+                printf("Enter a String2: ");
+                scanf("%s",str2);
+                printf("\nString Before Copied:\nString1=\"%s\",String2=\"%s\"\n",str1,str2);
+                strcpy(str2,str1);
+                printf("-----------------------------------------------\n");
+                printf("\"We are copying string String1 to String2\" \n");
+                printf("-----------------------------------------------\n");
+                printf("String After Copied:\nString1=\"%s\", String2=\"%s\"\n\n",str1,str2);
+            break;
+            
+            case 3:
+                printf("\nEnter First String: ");
+                scanf("%s",str1);
+                printf("Enter Second string: ");
+                scanf("%s",str2);
+                strcat(str1,str2);
+                printf("String After Concatenation : %s\n\n",str1);
+            break;
+            
+            case 4:
+                printf("Enter First String: ");
+                scanf("%s",str1);
+                printf("Enter Second String: ");
+                scanf("%s",str2);
+                j=strcmp(str1,str2);
+                if(j==0)
+                {
+                    printf("Strings are Same\n\n");
+                }
+                else
+                {
+                    printf("Strings are Not Same\n\n");
+                }
+            break;
+            case 5:
+                printf("Enter String: ");
+                scanf("%s",str1);
+                strrev(str1);
+                printf("Reverse string : %s\n\n",str1);
+            break;
+            case 6:printf("Enter String: ");
+                   scanf("%s",str1);
+                   strupr(str1);
+                   printf("Uppercase string:%s\n",str1);
+                   break;
+            case 7:printf("Enter String: ");
+                   scanf("%s",str1);
+                   strlwr(str1);
+                   printf("Lowercase string:%s\n",str1);
+                   break;
+            case 8:
+            	break;
+            case 9:
+                exit(0);
+            break;
+            default:
+                printf("Invalid Input. Please Enter valid Input.\n\n ");
+        }
+    }while(ch!=9);
+    return 0;
+}
+
+0/p-
+MENU
+------------------------------
+1:Find Length of String
+2:Copy the string
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 1
+Enter String: anshuja
+Length of String : 7
+
+        MENU
+------------------------------
+1:Find Length of String
+2:Copy the string
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 2
+Enter a String1: anshuja
+Enter a String2: meshram
+
+String Before Copied:
+String1="anshuja",String2="meshram"
+-----------------------------------------------
+"We are copying string String1 to String2"
+-----------------------------------------------
+String After Copied:
+String1="anshuja", String2="anshuja"
+
+        MENU
+------------------------------
+1:Find Length of String
+2:Copy the string
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 3
+
+Enter First String: anshuja meshram
+Enter Second string: String After Concatenation : anshujameshram
+
+        MENU
+------------------------------
+1:Find Length of String
+2:Copy the string
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 4
+Enter First String: fruit
+Enter Second String: fruit
+Strings are Same
+
+        MENU
+------------------------------
+1:Find Length of String
+2:Copy the string
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 5
+Enter String: black
+Reverse string : kcalb
+
+        MENU
+------------------------------
+1:Find Length of String
+2:Copy the string
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 5
+Enter String: fruit
+Reverse string : tiurf
+
+        MENU
+------------------------------
+1:Find Length of String
+2:Copy the string
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 6
+Enter String: fruit
+Uppercase string:FRUIT
+        MENU
+------------------------------
+1:Find Length of String
+2:Copy the string
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 7
+Enter String:
+FRUIT
+Lowercase string:fruit
+
+MENU
+------------------------------
+1:Find Length of String
+2:copy the String
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 8
+Enter String: ANSHUJA
+String is uppercase     
+ 
+MENU
+------------------------------
+1:Find Length of String
+2:copy the String
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 8
+Enter String: anshuja
+String is lowercase     
+
+        MENU
+------------------------------
+1:Find Length of String
+2:Copy the string
+3:Concatenate Strings
+4:Compare String
+5:Reverse Strings
+6:Uppercase Strings
+7:Lowercase Strings
+8:Check case Strings
+9:Exit
+------------------------------
+
+Enter your choice: 9

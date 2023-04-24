@@ -1,0 +1,361 @@
+//1. Accept a single digit from the user and display it in words. For example, if digit entered is 9, display Nine.
+
+#include<stdio.h>
+
+void main()
+{
+	int a;
+	printf("Enter digit (1 to 10):");
+	scanf("%d",&a);
+	
+	switch(a)
+	{
+		case 1: printf("one");
+				break;
+		case 2:printf("Two");
+				break;
+				
+		case 3: printf("Three");
+				break;
+		case 4:printf("Four");
+				break;
+							
+		case 5: printf("Five");
+				break;
+		case 6:printf("Six");
+				break;
+				
+		case 7: printf("Seven");
+				break;
+		case 8:printf("Eight");
+				break;
+				
+		case 9: printf("Nine");
+				break;
+		case 10:printf("Ten");
+				break;
+		default : printf("Invalid digit");
+				
+				
+	}
+}
+
+0/p-
+Enter digit (1 to 10):5
+Five
+
+//2. Write a program, which accepts two integers and an operator as a character (+ - * / ), performs the 
+//corresponding operation and displays the result.
+
+#include<stdio.h>
+void main()
+{
+	int a,b,c,d;
+	printf("Enter value of a and b:");
+	scanf("%d%d",&a,&b);
+	
+	printf("Choice \n 1)+ \n 2)- \n  3)* \n 4)/ \n:");
+	scanf("%d",&d);
+	
+	switch(d)
+	{
+		case 1: c=a+b;
+				printf("Addition=%d",c);
+				break;
+		case 2:c=a-b;
+				printf("Substraction=%d",c);
+				break;
+		case 3:c=a*b;
+		    	printf("Multiplication=%d",c);
+		    	break;
+		case 4:c=a/b;
+				printf("Division=%d",c);
+				break;
+		default : printf("Invalid character entered");
+	}
+}
+o/p-
+Enter value of a and b:50 10
+Choice
+ 1)+
+ 2)-
+  3)*
+ 4)/
+:1
+Addition=60
+
+Enter value of a and b:50 10
+Choice
+ 1)+
+ 2)-
+  3)*
+ 4)/
+:2
+Substraction=40
+
+Enter value of a and b:50 10
+Choice
+ 1)+
+ 2)-
+  3)*
+ 4)/
+:3
+Multiplication=500
+
+Enter value of a and b:50 10
+Choice
+ 1)+
+ 2)-
+  3)*
+ 4)/
+:4
+Division=5
+
+//3. Accept two numbers in variables x and y from the user and perform the following operation
+//Options Actions 
+//1. Equality Check if x is equal to y
+//2. Less Than Check if x is less than y
+//3. Quotient and Remainder Divide x by y and display the quotient and  remainder 
+//4. Range : Accept a number and check if it lies between x and y (both inclusive)
+//5. Swap : Interchange x and y
+
+#include<stdio.h>
+
+void main()
+{
+	int x,y,c,w,m,z,temp;
+	printf("Enter x and y:");
+	scanf("%d%d",&x,&y);
+	
+printf("enter any one option\n1. Equality Check if x is equal to y\n2. Less Than Check if x is less than y\n3. 
+Quotient and Remainder Divide x by y and display the quotient and remainder\n4. 
+Range : enter a number and check if it lies between x and y (both inclusive)\n5. 
+Swap : Interchange x and y \nenter option here=");
+    scanf("%d",&c);
+    
+    switch(c)
+    {
+    	case 1:
+        if(x==y){
+            printf("your entered numbers are equal");
+            break;
+        }
+        else{
+            printf("your entered numbers are not equal");
+            break;
+        }
+        case 2:
+        if(x<y){
+            printf("%d is less than %d",x,y);
+            break;
+        }
+        else{
+            printf("%d is less than %d",y,x);
+            break;
+        }
+        case 3:
+        w=x/y;
+        printf("quetiont is %d\n",w);
+        m=x%y;
+        printf("remainder is %d",m);
+        break;
+        case 4:
+        printf("enter any number ");
+        scanf("%d",&z);
+        if(x>y && z<x && z>y)
+        {
+            printf("%d  lies between %d and %d",z,x,y);
+            break;
+        }
+        else if(y>x && z>x && z<y){
+            printf("%d  lies between %d and %d",z,x,y);
+            break; 
+        }
+        else{
+            printf("%d does not lies between %d and %d",z,x,y);
+            }
+        case 5:
+        temp=x;
+        x=y;
+        y=temp;
+        printf("after swap  x=%d y=%d",x,y);
+        break;
+    }		
+}
+o/p-
+Enter x and y:50 50
+enter any one option
+1. Equality Check if x is equal to y
+2. Less Than Check if x is less than y
+3. Quotient and Remainder Divide x by y and display the quotient and remainder
+4. Range : enter a number and check if it lies between x and y (both inclusive)
+5. Swap : Interchange x and y
+enter option here=1
+your entered numbers are equal
+
+Enter x and y:50 20
+enter any one option
+1. Equality Check if x is equal to y
+2. Less Than Check if x is less than y
+3. Quotient and Remainder Divide x by y and display the quotient and remainder
+4. Range : enter a number and check if it lies between x and y (both inclusive)
+5. Swap : Interchange x and y
+enter option here=2
+20 is less than 50
+
+Enter x and y:50 20
+enter any one option
+1. Equality Check if x is equal to y
+2. Less Than Check if x is less than y
+3. Quotient and Remainder Divide x by y and display the quotient and remainder
+4. Range : enter a number and check if it lies between x and y (both inclusive)
+5. Swap : Interchange x and y
+enter option here=3
+quetiont is 2
+remainder is 10
+
+Enter x and y:50 20
+enter any one option
+1. Equality Check if x is equal to y
+2. Less Than Check if x is less than y
+3. Quotient and Remainder Divide x by y and display the quotient and remainder
+4. Range : enter a number and check if it lies between x and y (both inclusive)
+5. Swap : Interchange x and y
+enter option here=4
+enter any number 35
+35  lies between 50 and 20
+
+Enter x and y:50 30
+enter any one option
+1. Equality Check if x is equal to y
+2. Less Than Check if x is less than y
+3. Quotient and Remainder Divide x by y and display the quotient and remainder
+4. Range : enter a number and check if it lies between x and y (both inclusive)
+5. Swap : Interchange x and y
+enter option here=5
+after swap  x=30 y=50
+
+//4. Accept radius from the user and write a program having menu with the following options and corresponding actions:
+//Options Actions 
+//1. Area of Circle
+//2. Circumference of Circle
+//3. Volume of Sphere
+
+#include<stdio.h>
+
+void main()
+{
+	int r,ch,area,cir,vol;
+	printf("Enter radius:");
+	scanf("%d",&r);
+	
+	printf("Enter choice:\n 1)Area of circle \n2)Circumference of circle \n3)Volume of sphere\n");
+	scanf("%d",&ch);
+	
+	switch(ch)
+	{
+		case 1: area=3.14*r*r;
+				printf("Area of circle=%d",area);
+				break;
+		case 2: cir=2*3.14*r;
+				printf("Circumference of circle=%d",cir);
+				break;
+				
+		case 3:vol=(4*3.14*r*r)/3;
+				printf("volume of sphere=%d",vol);
+				break;
+	}
+}
+0/p-
+Enter radius:10
+Enter choice:
+ 1)Area of circle
+2)Circumference of circle
+3)Volume of sphere
+1
+Area of circle=314
+
+Enter radius:10
+Enter choice:
+ 1)Area of circle
+2)Circumference of circle
+3)Volume of sphere
+2
+Circumference of circle=62
+
+Enter radius:10
+Enter choice:
+ 1)Area of circle
+2)Circumference of circle
+3)Volume of sphere
+3
+volume of sphere=418
+
+//5. Write a program having menu that has three options - add, subtract or multiply two fractions. The two 
+//fractions and the options are taken as input and the result is displayed as output. Each fraction is read as 
+//two integers, numerator and denominator.
+
+#include<stdio.h>
+
+void main()
+{
+    int a,b,c,d,w,e,j;
+    printf("enter 2 fractions ");
+    scanf("%d %d %d %d",&a,&b,&c,&d);
+    printf("1st numbers numerator=%d\n1st numbers denominator=%d\n2nd numbers numerator=%d\n2nd numbers denominator=%d\n
+two fractions are %d/%d and %d/%d\n",a,b,c,d,a,b,c,d);
+    printf("enter any option\n1)adiition\n2)substration\n3)multiplication");
+    scanf("%d",&w);
+    switch(w){
+    case 1:
+        e=((a*d)+(b*c));
+        j=(b*d);
+        printf("addition of two fraction is %d/%d ",e,j);
+        break;
+     case 2:
+        e=((a*d)-(b*c));
+        j=(b*d);
+        printf("substration of two fraction is %d/%d ",e,j);
+        break;
+    case 3:
+        e=(a*c);
+        j=(b*d);
+        printf("multiplication of two fraction is %d/%d ",e,j);
+    }	
+}
+0/p-
+enter 2 fractions 4 5 6 7
+1st numbers numerator=4
+1st numbers denominator=5
+2nd numbers numerator=6
+2nd numbers denominator=7
+two fractions are 4/5 and 6/7
+enter any option
+1)adiition
+2)substration
+3)multiplication1
+addition of two fraction is 58/35
+
+enter 2 fractions 4 5 6 7
+1st numbers numerator=4
+1st numbers denominator=5
+2nd numbers numerator=6
+2nd numbers denominator=7
+two fractions are 4/5 and 6/7
+enter any option
+1)adiition
+2)substration
+3)multiplication2
+substration of two fraction is -2/35
+
+enter 2 fractions 4 5 6 7
+1st numbers numerator=4
+1st numbers denominator=5
+2nd numbers numerator=6
+2nd numbers denominator=7
+two fractions are 4/5 and 6/7
+enter any option
+1)adiition
+2)substration
+3)multiplication3
+multiplication of two fraction is 24/35

@@ -1,0 +1,223 @@
+//1. Write a program to accept an integer and check if it is even or odd.
+
+#include<stdio.h>
+void main()
+{
+	int n;
+	printf("enter number:");
+	scanf("%d",&n);
+	
+	if(n%2==0)
+		printf("%d is even ",n);
+	else
+		printf("%d is odd",n);
+}
+
+o/p-
+enter number:5
+5 is odd
+enter number:15
+15 is odd
+
+//2. Write a program to accept a number and check if it is divisible by 5 and 7.
+
+void main()
+{
+	int n;
+	printf("enter number:");
+	scanf("%d",&n);
+	
+	if(n%5==0 && n%7==0)
+		printf("%d is divisible by 5 and 7",n);
+	else
+		printf("%d is not divisible by 5 and 7");
+		
+}
+
+0/p-
+enter number:70
+70 is divisible by 5 and 7
+enter number:49
+45 is not divisible by 5 and 7
+
+//3. Write a program, which accepts annual basic salary of an employee and calculates and displays the 
+//Income tax as per the following rules. 
+//Basic: < 1, 50,000 Tax = 0
+// 1, 50,000 to 3,00,000 Tax = 20% 
+// > 3,00,000 Tax = 30% 
+
+#include<stdio.h>
+
+void main()
+{
+	int basic;
+	
+	printf("Enter annual basic salary:");
+	scanf("%d",&basic);
+	
+	if(basic<150000)
+		printf("There will be 0% tax on annual income");
+	else if(basic>150000 && basic<300000)
+			printf("There will be 20% tax on annual income which is %d",(basic*20)/100);
+	else if(basic>300000)
+			printf("There will be 30% tax on annual income which is %d",(basic*30)/100);
+	
+}
+
+o/p-
+Enter annual basic salary:100000
+There will be 0tax on annual income
+Enter annual basic salary:180000
+There will be 20tax on annual income which is 36000
+Enter annual basic salary:350000
+There will be 30tax on annual income which is 105000
+
+//4. Accept a lowercase character from the user and check whether the character is a vowel or consonant. 
+//(Hint: a, e, i, o, u are vowels)
+
+#include<stdio.h>
+
+void main()
+{
+	char ch;
+	
+	printf("Enter a character in lowercase:");
+	scanf("%c",&ch);
+	
+	if(ch<97 || ch>122)
+		printf("Please enter character in lowercase");
+	else if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u')
+			printf("character is vowel");
+	else
+		printf("character is consonant");
+}
+o/p-
+Enter a character in lowercase:A
+Please enter character in lowercase
+Enter a character in lowercase:e
+character is vowel
+Enter a character in lowercase:k
+character is consonant
+
+//5. Write a C program to input angles of a triangle and check whether triangle is valid or not
+
+#include<stdio.h>
+void main()
+{
+	int a,b,c;
+	printf("Enter 1st angle of triangle:");
+	scanf("%d",&a);
+	
+	printf("Enter 2nd angle of triangle:");
+	scanf("%d",&b);
+	
+	printf("Enter 3rd angle of triangle:");
+	scanf("%d",&c);
+	
+	if((a+b+c)==180)
+		printf("Triangle is valid");
+	else
+		printf("Triangle is not valid");
+	
+	
+}
+o/p-
+Enter 1st angle of triangle:45
+Enter 2nd angle of triangle:45
+Enter 3rd angle of triangle:90
+Triangle is valid
+
+//6. Write a C program to check whether a entered character is uppercase or lowercase alphabet.
+
+#include<stdio.h>
+
+void main()
+{
+	char ch;
+	
+	printf("Enter a character:");
+	scanf("%c",&ch);
+	
+	if(ch>=65 && ch<=90)
+		printf("character is uppercase");
+	else if(ch>=97 && ch<=122)
+			printf("character is lowercase");
+	
+}
+
+o/p-
+Enter a character:S
+character is uppercase
+Enter a character:a
+character is lowercase
+
+//7. Write a C program to accept a character and invert the case of it
+
+#include<stdio.h>
+
+void main()
+{
+	char ch;
+	
+	printf("Enter a character:");
+	scanf("%c",&ch);
+	
+	if(ch>=65 && ch<=90)
+	{
+		ch=ch+32;
+		printf("After conversion=%c",ch);
+	}	
+	else if(ch>=97 && ch<=122)
+	{
+			ch=ch-32;
+		printf("After conversion=%c",ch);
+	}	
+}
+
+o/p-
+Enter a character:S
+After conversion=s
+Enter a character:
+After conversion=A
+
+//8. Write a program to accept 3 numbers and compute minimum and maximum from them.
+
+#include<stdio.h>
+
+void main()
+{
+	int a,b,c;
+	
+	printf("enter value of a b c:");
+	scanf("%d%d%d",&a,&b,&c);
+	
+	if(a>b && a>c)
+	{
+		printf("%d is maximum\n",a);
+	}
+	else if(b>c)
+	{
+		printf("%d is maximum\n",b);
+	}
+	else
+	{
+		printf("%d is maximum\n",c);
+	}
+	
+	if(a<b && a<c)
+	{
+		printf("%d is minimum\n",a);
+	}
+	else if(b<c)
+	{
+		printf("%d is minimum\n",b);
+	}
+	else
+	{
+		printf("%d is minimum\n",c);
+	}	
+}
+o/p-
+enter value of a b c:10 20 30
+30 is maximum
+10 is minimum

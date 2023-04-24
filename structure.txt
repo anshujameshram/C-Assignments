@@ -1,0 +1,815 @@
+//1. Create a structure student (roll number, name, marks of 3 subjects, percentage). Accept details of n 
+//students and write a menu driven program to perform the following operations. 
+//Write separate functions for the different options.
+//i) Search 
+//ii) Modify
+//iii) Display all student details
+//iv) Display all student having percentage > 80
+//v) Display student having maximum percentage
+
+#include<stdio.h>
+#include<string.h>
+struct student 
+{
+	int roll_no,math,fileo,proc;
+	char name[20];
+	float percent;
+};
+void Search(struct student S[],int size);
+void Modify(struct student S[],int size,int roll_no);
+void DisplayAll(struct student S[],int size);
+void PercentGT(struct student S[],float checkPercent,int size);
+void MaxPercent(struct student S[],int size);
+void main()
+{
+	struct student S[200];
+	int i,roll_no,size,ope;
+	float checkPercent;
+	printf("\n How many students are there:- ");
+	scanf(" %d",&size);
+	printf("\n Enter the information of students as follow:- \n \n");
+	printf("\n Roll No\t Name \t Mathematics \t File Organisation \t Programming In C \n \n");
+ 
+	for(i=0;i<size;i++)
+	{
+	scanf(" %d %s %d %d %d",&S[i].roll_no,S[i].name,&S[i].math,&S[i].fileo,&S[i].proc);
+	S[i].percent=(S[i].math+S[i].fileo+S[i].proc)/3;
+	}
+	do{
+	printf("\n \t ***** Menu *****");
+	printf("\n 1.Search");
+	printf("\n 2.Modify");
+	printf("\n 3.Display all student details");
+	printf("\n 4.Display all students having percentage greater than 80");
+	printf("\n 5.Display student having maximum percentage");
+	printf("\n 6.Exit \n \n");
+	printf("\n Enter Your Choice:- ");
+	scanf(" %d",&ope);
+	switch(ope)
+	{
+	case 1:
+	Search(S,size);
+	break;
+	case 2:
+	printf("\n Enter roll no to modify the details:- ");
+	scanf(" %d",&roll_no);
+	Modify(S,size,roll_no);
+	break; 
+	case 3:
+	DisplayAll(S,size);
+	break;
+	case 4:
+	printf("\n Enter percentage:- ");
+	scanf("%f",&checkPercent);
+	PercentGT(S,checkPercent,size);
+	break;
+	case 5:
+	MaxPercent(S,size);
+	break;
+	}}while(ope!=6);
+}
+void Search(struct student S[],int size)
+{
+	char name[20];
+	int i,flg=0,roll_no,searchBy;
+	do{
+	printf("\n How do you want to search:- 1.By Roll No \n \t\t\t     2.By Name \n");
+	scanf(" %d",&searchBy);
+   
+	if(searchBy==1)
+	{
+	printf("\n Enter roll no of the student:- ");
+	scanf(" %d",&roll_no);
+	} 
+	else
+	{
+	printf("\n Enter the name of the student:- ");
+	scanf(" %s",name);
+	}}while(searchBy<1 || searchBy>2);
+	for(i=0;i<size;i++)
+	{
+		if(S[i].roll_no==roll_no || strcmp(S[i].name,name)==0)
+		{
+		flg=1;
+		break;
+		}
+	} 
+ 
+	if(flg==1)
+	{
+	printf("\n We have found this result:- \n ");
+	printf("\n Roll No\t Name \t Mathematics \t File Organisation \t Programming In C  \t Percentage \n \n"); 
+	printf("\n %d \t\t %s \t %6d \t\t %1d \t\t %8d \t\t %f \n",S[i].roll_no,S[i].name,S[i].math,S[i].fileo,S[i].proc,
+S[i].percent);
+	}
+	else
+	printf("\n We haven't found any record \n \n");
+}
+// Modify Function
+void Modify(struct student S[],int size,int roll_no)
+{
+	char name[20]; 
+	int i,update,newData;
+	do{
+	printf("\n What do you want to update:- 1.Roll NO \n \t\t\t      2.Name \n \t\t\t      3.Marks of 'Mathematics' 
++9\n \t\t\t      4.Marks of 'File Organisation' \n \t\t\t      5.Marks of 'Programming in C' \n");
+	scanf(" %d",&update);
+	if(update==3 || update==4 || update==5)
+	{
+	printf("\n Enter new marks:- ");
+	scanf("%d",&newData);
+	}
+	else if(update==1)
+	{
+	printf("\n Enter new roll no:- ");
+	scanf(" %d",&newData);
+	}
+	else if(update==2)
+	{
+	printf("\n Enter new name:- ");
+	scanf(" %s",name);
+	}
+	else 
+	{
+	printf("\n Please make a valid choice \n \n"); 
+	}
+ 
+	}while(update<1 || update>5);
+	for(i=0;i<size;i++)
+	{
+		if(S[i].roll_no==roll_no)
+		{
+			if(update==1)
+			{
+			S[i].roll_no=newData;
+			break;
+			}   
+			else if(update==3)
+			{
+			S[i].math=newData;
+			break;
+			} 
+			else if(update==4)
+			{
+			S[i].fileo=newData;
+			break;
+			} 
+			else if(update==5)
+			{
+			S[i].proc=newData;
+			break;
+			}
+			else
+			{
+			strcpy(S[i].name,name);
+			break; 
+			} 
+		}
+	}
+ 
+	printf("\n Modified details of students are as follows:- \n");
+	printf("\n Roll No\t Name \t Mathematics \t File Organisation \t Programming In C  \t Percentage \n \n");
+	for(i=0;i<size;i++)
+	{ 
+	printf("\n %d \t\t %s \t %6d \t\t %1d \t\t %8d \t\t %f \n",S[i].roll_no,S[i].name,S[i].math,
+S[i].fileo,S[i].proc,S[i].percent); 
+	}
+}
+// DisplayAll Function
+void DisplayAll(struct student S[200],int size)
+{
+	int i;
+	printf("\n The Information of students is as follow:- \n \n");
+	printf("\n Roll No\t Name \t Mathematics \t File Organisation \t Programming In C  \t Percentage \n \n"); 
+ 
+	for(i=0;i<size;i++)
+	printf("\n %d \t\t %s \t %6d \t\t %1d \t\t %8d \t\t %f \n",S[i].roll_no,S[i].name,S[i].math,
+S[i].fileo,S[i].proc,S[i].percent);
+}
+// PercentGT Function
+void PercentGT(struct student S[],float checkPercent,int size)
+{
+	int i;
+	printf("\n The Information of students who scored percentage>%f :- \n \n",checkPercent);
+	printf("\n Roll No\t Name \t Mathematics \t File Organisation \t Programming In C  \t Percentage \n \n"); 
+ 
+	for(i=0;i<size;i++)
+	{
+		if(S[i].percent>checkPercent)
+		{
+		printf("\n %d \t\t %s \t %6d \t\t %1d \t\t %8d \t\t %f \n",S[i].roll_no,
+S[i].name,S[i].math,S[i].fileo,S[i].proc,S[i].percent);
+		}
+	}
+}
+// MaxPercent Function
+void MaxPercent(struct student S[200],int size)
+{
+	int i;
+	float maxPercent=S[0].percent;
+	for(i=0;i<size;i++)
+		if(S[i].percent>maxPercent)
+		{  
+		maxPercent=S[i].percent;
+		break;
+		}
+	printf("\n \"%s\" scored maximum percentage. Below are his details:- - \n ",S[i].name);
+	printf("\n Roll No\t Name \t Mathematics \t File Organisation \t Programming In C  \t Percentage \n \n"); 
+	printf("\n %d \t\t %s \t %6d \t\t %1d \t\t %8d \t\t %f \n",S[i].roll_no,S[i].name,S[i].math,S[i].fileo,
+S[i].proc,S[i].percent);
+}
+
+o/p-
+How many students are there:- 3
+
+ Enter the information of students as follow:-
+
+
+ Roll No         Name    Mathematics     File Organisation       Programming In C
+
+1 shreya 78 98 67
+2 piyush 67 34 56
+3 pinky 89 54 80
+
+         ***** Menu *****
+ 1.Search
+ 2.Modify
+ 3.Display all student details
+ 4.Display all students having percentage greater than 80
+ 5.Display student having maximum percentage
+ 6.Exit
+
+
+ Enter Your Choice:- 1
+
+ How do you want to search:- 1.By Roll No
+                             2.By Name
+1
+
+ Enter roll no of the student:- 2
+
+ We have found this result:-
+
+ Roll No         Name    Mathematics     File Organisation       Programming In C        Percentage
+
+
+ 2               piyush              67                  34                    56
+         52.000000
+
+         ***** Menu *****
+ 1.Search
+ 2.Modify
+ 3.Display all student details
+ 4.Display all students having percentage greater than 80
+ 5.Display student having maximum percentage
+ 6.Exit
+
+
+ Enter Your Choice:- 2
+
+ Enter roll no to modify the details:- 3
+
+ What do you want to update:- 1.Roll NO
+                              2.Name
+                              3.Marks of 'Mathematics'
+                              4.Marks of 'File Organisation'
+                              5.Marks of 'Programming in C'
+2
+
+ Enter new name:- piyusha
+
+ Modified details of students are as follows:-
+
+ Roll No         Name    Mathematics     File Organisation       Programming In C        Percentage
+
+
+ 1               shreya              78                  98                    67
+         81.000000
+
+ 2               piyush              67                  34                    56
+         52.000000
+
+ 3               piyusha             89                  54                    80
+         74.000000
+
+         ***** Menu *****
+ 1.Search
+ 2.Modify
+ 3.Display all student details
+ 4.Display all students having percentage greater than 80
+ 5.Display student having maximum percentage
+ 6.Exit
+
+
+ Enter Your Choice:- 3
+
+ The Information of students is as follow:-
+
+
+ Roll No         Name    Mathematics     File Organisation       Programming In C        Percentage
+
+
+ 1               shreya              78                  98                    67
+         81.000000
+
+ 2               piyush              67                  34                    56
+         52.000000
+
+ 3               piyusha             89                  54                    80
+         74.000000
+
+         ***** Menu *****
+ 1.Search
+ 2.Modify
+ 3.Display all student details
+ 4.Display all students having percentage greater than 80
+ 5.Display student having maximum percentage
+ 6.Exit
+
+
+ Enter Your Choice:- 3
+
+ The Information of students is as follow:-
+
+
+ Roll No         Name    Mathematics     File Organisation       Programming In C        Percentage
+
+
+ 1               shreya              78                  98                    67
+         81.000000
+
+ 2               piyush              67                  34                    56
+         52.000000
+
+ 3               piyusha             89                  54                    80
+         74.000000
+
+         ***** Menu *****
+ 1.Search
+ 2.Modify
+ 3.Display all student details
+ 4.Display all students having percentage greater than 80
+ 5.Display student having maximum percentage
+ 6.Exit
+
+
+ Enter Your Choice:- 4
+
+ Enter percentage:- 80
+
+ The Information of students who scored percentage>80.000000 :-
+
+
+ Roll No         Name    Mathematics     File Organisation       Programming In C        Percentage
+
+
+ 1               shreya              78                  98                    67
+         81.000000
+
+         ***** Menu *****
+ 1.Search
+ 2.Modify
+ 3.Display all student details
+ 4.Display all students having percentage greater than 80
+ 5.Display student having maximum percentage
+ 6.Exit
+
+
+ Enter Your Choice:- 5
+
+ "" scored maximum percentage. Below are his details:- -
+
+ Roll No         Name    Mathematics     File Organisation       Programming In C        Percentage
+
+
+     1           shreya              78                  98                    67
+         81.000000
+
+         ***** Menu *****
+ 1.Search
+ 2.Modify
+ 3.Display all student details
+ 4.Display all students having percentage greater than 80
+ 5.Display student having maximum percentage
+ 6.Exit
+
+
+ Enter Your Choice:- 6
+
+--------------------------------
+
+//2. Create a structure employee (id, name, salary). Accept details of n employees and write a menu driven 
+//program to perform the following operations. Write separate functions for the different options.
+//i) Search by name
+//ii) Search by id 
+//iii) Display all
+//iv) Display all employees having salary > 25000
+//v) Display employee having maximum 
+
+#include<stdio.h>
+#include<string.h>
+
+struct employee
+{
+	int id,salary;
+	char name[30];
+ };
+void SearchByName(struct employee E[],int size);
+void SearchById(struct employee E[],int size);
+void DisplayAll(struct employee E[],int size);
+void PercentGT(struct employee E[],float checkSalary,int size);
+void MaxSalary1(struct employee E[],int size); 
+
+void main()
+{
+	struct employee E[200];
+	int i,size,ope;
+	float checkSalary;
+	printf("\n How many employees are there:- ");
+	scanf(" %d",&size);
+	printf("\n Enter the information of Employee as follow:- \n \n");
+	printf("\n Id\t Name \t Salary\n \n");
+ 
+	for(i=0;i<size;i++)
+	{
++
+
+	scanf("%d%s%d",&E[i].id,E[i].name,&E[i].salary);
+	}
+	do{
+	printf("\n \t ***** Menu *****");
+	printf("\n 1.Search By Name");
+	printf("\n 2.Search By Id");
+	printf("\n 3.Display all employee details");
+	printf("\n 4.Display all employees having salary > 25000");
+	printf("\n 5.Display employee having maximum salary");
+	printf("\n 6.Exit \n \n");
+	printf("\n Enter Your Choice:- ");
+	scanf(" %d",&ope);
+	switch(ope)
+	{
+	case 1:
+	SearchByName(E,size);
+	break;
+	case 2:
+	SearchById(E,size);
+	break; 
+	case 3:
+	DisplayAll(E,size);
+	break;
+	case 4:
+	printf("\n Enter salary:- ");
+	scanf("%f",&checkSalary);
+	PercentGT(E,checkSalary,size);
+	break;
+	case 5:
+	MaxSalary1(E,size);
+	break;
+	}}while(ope!=6);
+}
+void SearchById(struct employee E[],int size)
+{
+	char name[20];
+	int i,flg=0,id;
+	printf("Enter id to serach:");
+	scanf("%d",&id);
+	
+	for(i=0;i<size;i++)
+	{
+		if(E[i].id==id)
+		{
+		flg=1;
+		break;
+		}
+	} 
+ 
+	if(flg==1)
+	{
+	printf("\n We have found this result:- \n ");
+	printf("\n ID\t Name \t Salary \n \n"); 
+	printf("\n %d \t\t %s \t %d\n",E[i].id,E[i].name,E[i].salary);
+	}
+	else
+	printf("\n We haven't found any record \n \n");
+}
+void SearchByName(struct employee E[],int size)
+{
+	char name1[20];
+	int i,flg=0;
+	
+	printf("Enter name to search:");
+	scanf("%s",&name1);
+	
+	for(i=0;i<size;i++)
+	{
+		if(strcmp(E[i].name,name1)==0)
+		{
+		flg=1;
+		break;
+		}
+	} 
+ 
+	if(flg==1)
+	{
+	printf("\n We have found this result:- \n ");
+	printf("\n ID\t Name \t Salary \n \n"); 
+	printf("\n %d \t\t %s \t %d\n",E[i].id,E[i].name,E[i].salary);
+	}
+	else
+	printf("\n We haven't found any record \n \n");
+}
+// DisplayAll Function
+void DisplayAll(struct employee E[200],int size)
+{
+	int i;
+	printf("\n The Information of students is as follow:- \n \n");
+	printf("\n Id\t Name \t Salary  \n \n"); 
+ 
+	for(i=0;i<size;i++)
+	printf("\n %d \t\t %s \t %d  \n",E[i].id,E[i].name,E[i].salary);
+}
+// PercentGT Function
+void PercentGT(struct employee E[],float checkSalary,int size)
+{
+	int i;
+	printf("\n The Information of employee who salary >%f :- \n \n",checkSalary);
+	printf("\n Id\t Name \t Salary \n \n"); 
+ 
+	for(i=0;i<size;i++)
+	{
+		if(E[i].salary>checkSalary)
+		{
+		printf("\n %d \t\t %s \t %d  \n",E[i].id,E[i].name,E[i].salary);
+		}
+	}
+}
+
+void MaxSalary1(struct employee E[200],int size)
+{
+	int i;
+	int maxSalary=E[0].salary;
+	for(i=0;i<size;i++)
+	{
+		if(E[i].salary>maxSalary)
+		{  
+		maxSalary=E[i].salary;
+		break;
+		}
+		printf("\n %s  has max salary",E[i].name);
+	printf("\n Id\t Name \t Salary  \n \n"); 
+	printf("\n %d \t\t %s \t %d  \n",E[i].id,E[i].name,E[i].salary);
+    }
+}
+
+o/p-
+ How many employees are there:- 3
+
+ Enter the information of Employee as follow:-
+
+
+ Id      Name    Salary
+
+1 anshuja 90000
+2 pinky 80000
+3 piyush 70000
+
+         ***** Menu *****
+ 1.Search By Name
+ 2.Search By Id
+ 3.Display all employee details
+ 4.Display all employees having salary > 25000
+ 5.Display employee having maximum salary
+ 6.Exit
+
+
+ Enter Your Choice:- 1
+Enter name to search:pinky
+
+ We have found this result:-
+
+ ID      Name    Salary
+
+
+ 2               pinky   80000
+
+         ***** Menu *****
+ 1.Search By Name
+ 2.Search By Id
+ 3.Display all employee details
+ 4.Display all employees having salary > 25000
+ 5.Display employee having maximum salary
+ 6.Exit
+
+
+ Enter Your Choice:- 2
+Enter id to serach:1
+
+ We have found this result:-
+
+ ID      Name    Salary
+
+
+ 1               anshuja         90000
+
+         ***** Menu *****
+ 1.Search By Name
+ 2.Search By Id
+ 3.Display all employee details
+ 4.Display all employees having salary > 25000
+ 5.Display employee having maximum salary
+ 6.Exit
+
+
+ Enter Your Choice:- 3
+
+ The Information of students is as follow:-
+
+
+ Id      Name    Salary
+
+
+ 1               anshuja         90000
+
+ 2               pinky   80000
+
+ 3               piyush          70000
+
+         ***** Menu *****
+ 1.Search By Name
+ 2.Search By Id
+ 3.Display all employee details
+ 4.Display all employees having salary > 25000
+ 5.Display employee having maximum salary
+ 6.Exit
+
+
+ Enter Your Choice:- 4
+
+ Enter salary:- 25000
+
+ The Information of employee who salary >25000.000000 :-
+
+
+ Id      Name    Salary
+
+
+ 1               anshuja         90000
+
+ 2               pinky   80000
+
+ 3               piyush          70000
+
+         ***** Menu *****
+ 1.Search By Name
+ 2.Search By Id
+ 3.Display all employee details
+ 4.Display all employees having salary > 25000
+ 5.Display employee having maximum salary
+ 6.Exit
+
+
+ Enter Your Choice:- 5
+
+ Id      Name    Salary
+
+1          anshuja       90000
+
+         ***** Menu *****
+ 1.Search By Name
+ 2.Search By Id
+ 3.Display all employee details
+ 4.Display all employees having salary > 25000
+ 5.Display employee having maximum salary
+ 6.Exit
+
+
+ Enter Your Choice:- 6
+
+--------------------------------
+/*3. The following structure is for a library book with the following details: id, title, publisher, code (1 – Text 
+book, 2 – Magazine, 3 – Reference book). If the code is 1, store no-of-copies. If code = 2, store the issue 
+month name. If code = 3, store edition number. Also store the cost.
+struct library_book
+{
+ int id; 
+ char title[80];
+ char publisher[20] ;
+ int code; 
+ union u { 
+ int no_of_copies; 
+ char month[10]; 
+ int edition; 
+ }info; 
+ int cost;
+};
+Write a program to accept details of n books. Use switch - case to accept the code and details 
+according to 
+the code.*/
+
+#include<stdio.h>
+#include<string.h>
+struct library_book
+{
+    int id;
+    char title[80];
+    char publisher[20] ;
+    int code;
+    union u {
+        int no_of_copies;
+        char month[10];
+        int edition;
+    }info;
+    int cost;
+};
+void main(){
+    
+    struct library_book b[100];
+    int n,i, code;
+    
+    printf("Enter the number of books:");
+    scanf("%d",&n);
+    printf("\n Choose from below menu................");
+    printf("\n1.Text book\n2.Magazine\n3.Reference book \n4.Exit\nEnter your choice:");
+    scanf("%d",&code);
+              
+              switch(code){
+                  case 1 :
+                            for(i=0;i<n;i++)
+                            {
+                                   printf("\nEnter book id: ");
+                                   scanf("%d",&b[i].id);
+                                   printf("\nEnter book title: ");
+                                   scanf("%s",b[i].title);
+                                   printf("\nEnter publisher name : ");
+                                   scanf("%s",b[i].publisher);
+                                   printf("\nEnter no of Copies : ");
+                                   scanf("%d",&b[i].info.no_of_copies);
+                                   printf("\nEnter Cost : ");
+                                   scanf("%d",&b[i].cost);
+                            }
+                            break;
+                  case 2 :
+                            for(i=0;i<n;i++)
+                            {
+                                   printf("\nEnter book id: ");
+                                   scanf("%d",&b[i].id);
+                                   printf("\nEnter book title: ");
+                                   scanf("%s",b[i].title);
+                                   printf("\nEnter publisher name : ");
+                                   scanf("%s",b[i].publisher);
+                                   printf("\nEnter issue month name : ");
+                                   scanf("%s",b[i].info.month);
+                                   printf("\nEnter Cost : ");
+                                   scanf("%d",&b[i].cost);
+                            }
+                            break;
+                  case 3 :
+                            for(i=0;i<n;i++)
+                            {
+                                   printf("\nEnter book id: ");
+                                   scanf("%d",&b[i].id);
+                                   printf("\nEnter book title: ");
+                                   scanf("%s",b[i].title);
+                                   printf("\nEnter publisher name : ");
+                                   scanf("%s",b[i].publisher);
+                                   printf("\nEnter edition number : ");
+                                   scanf("%d",b[i].info.edition);
+                                   printf("\nEnter Cost : ");
+                                   scanf("%d",&b[i].cost);
+                            }
+                          break;
+                  case 4 :
+                          printf("Exit.........");
+                          break;
+                  default : 
+                          printf("Invalid Input");
+                  
+              }
+              
+          
+         
+         if(code != 4) {
+          printf("\n\nDisplay books:");
+                            for(i=0;i<n;i++)
+                            {
+                                   printf("\nbook id:\t\t\t%d ",b[i].id);
+                                   printf("\nbook title:\t\t\t%s ",b[i].title);
+                                   printf("\npublisher name :\t\t%s ",b[i].publisher);
+                                   printf("\nCost :\t\t\t\t%d ",b[i].cost);
+                                    if(code==1){
+                                       printf("\nNo of Copies :\t\t%d ",b[i].info.no_of_copies);
+                                   }
+                                   if(code == 2){
+                                       printf("\nIssue month name :\t\t%s ",b[i].info.month);
+                                   }
+                                   if(code == 3){
+                                       printf("\nEdition number :\t\t\t%d ",b[i].info.edition);
+                                   }
+                                   printf("\n");
+                            }
+          
+         }        
+}
+
+
+
